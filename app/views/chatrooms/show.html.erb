@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h1>#<%= @chatroom.name %></h1>
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+   <!-- #SUPER IMPORTANT! This is how we pass data from server to front-end! -->
+
+    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+      <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+    <% end %>
+    <% @chatroom.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>
+</div>
